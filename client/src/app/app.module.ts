@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
+import { JwtInterceptor } from './core/Interceptors/jwt.inteceptor';
 import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
 import { HomeModule } from './home/home.module';
 
@@ -27,7 +28,8 @@ import { HomeModule } from './home/home.module';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
